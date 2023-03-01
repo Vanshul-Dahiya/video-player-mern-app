@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const { dbConnection } = require("./db/dbConnect");
 const { readdirSync } = require("fs");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -17,6 +18,9 @@ app.use(express.json());
 readdirSync("./routes").map((route) => {
   app.use("/api", require("./routes/" + route));
 });
+
+// serve static files
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 const server = () => {
   dbConnection();
