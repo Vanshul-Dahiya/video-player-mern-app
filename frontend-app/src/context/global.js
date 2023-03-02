@@ -63,7 +63,7 @@ export const GlobalProvider = ({ children }) => {
     getAllVideos();
   }, []);
   return (
-    <GlobalContext.Provider value={{ ...state }}>
+    <GlobalContext.Provider value={{ ...state, getAllVideos }}>
       {children}
     </GlobalContext.Provider>
   );
